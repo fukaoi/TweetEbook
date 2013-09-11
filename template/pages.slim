@@ -1,0 +1,22 @@
+section.license
+  - for obj in self
+    .favorite
+      a href="http://twitter.com/#{obj.name}" target="_blank"
+        img.image src="images/twitter/#{obj.image_name}"
+
+      .account
+        a href="http://twitter.com/#{obj.name}" target="_blank"
+          .name #{obj.name}
+
+        p.desc
+          |
+            #{obj.desc}
+      article #{obj.article}
+
+      .info
+        p.count favorites: #{obj.favorites}
+        p.date #{obj.datetime}
+    br
+    br
+img class="back" src="images/bk.jpg"
+

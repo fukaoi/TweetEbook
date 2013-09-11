@@ -1,0 +1,62 @@
+doctype xml
+package(xmlns="http://www.idpf.org/2007/opf" prefix="rendition: http://www.idpf.org/vocab/rendition/#" version="3.0" unique-identifier="uid")
+
+	metadata xmlns:dc="http://purl.org/dc/elements/1.1/"
+		/ -- About the Book --
+		dc:title id="en_title" xml:lang="en" Tweet Favorite Ebook of #{name}
+		dc:description id="en_description" xml:lang="en" for epub3
+		
+		/-- Contributors --
+		dc:creator id="creator" #{name}
+		meta refines="#creator" property="file-as" #{name}
+		meta refines="#creator" property="role" scheme="marc:relators" aut
+		
+		/-- Publication --
+		dc:publisher id="en_publisher" xml:lang="en" #{name}
+		dc:date #{created_date}
+		dc:language en
+		
+		meta property="dcterms:modified" #{created_date}
+		/-- Unique ID --
+		dc:identifier id="uid" #{uuid}
+		
+		/-- License --
+		dc:rights id="en_rights" xml:lang="en" This work is licensed under a Creative Commons Attribution-ShareAlike (CC BY-SA) 3.0 Unported License.
+
+		/-- Cover Image --
+		meta name="cover" content="coverimage"
+
+	
+	manifest
+	
+		/-- Table of Contents --
+		item id="toc" href="nav.html" properties="nav" media-type="application/xhtml+xml"
+		    
+		/-- CSS --
+		item id="css" href="css/style.css" media-type="text/css"
+	
+		/-- HTML --
+		item id="cover" media-type="application/xhtml+xml" href="cover.html"
+		- for page in page_names
+            item id="#{page}" media-type="application/xhtml+xml" href="#{page}"
+
+		/-- Images --
+		item id="coverimage" href="images/book_cover.jpg" media-type="image/jpeg"
+        item id="backimage" href="images/bk.jpg" media-type="image/jpeg"
+        item id="no_image" href="images/no_image.png" media-type="image/jpeg"
+
+        /-- profile image --
+        /item id="profileimage" href="images/twitter/#{self.profile_image}" media-type="image/jpeg"
+
+        /-- page images --
+        - i = 0
+		- for obj in images
+		    - i += 1
+            item id="image#{i}" media-type="#{obj.file_ext}" href="#{obj.image}"
+
+	spine page-progression-direction="ltr"
+		itemref idref="cover"
+		/itemref idref="nav"
+
+        - for page in page_names
+          itemref idref="#{page}" linear="yes"

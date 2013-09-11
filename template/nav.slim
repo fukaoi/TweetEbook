@@ -1,0 +1,9 @@
+nav epub:type="toc"
+  h1 Table of Contents
+  ol
+    li
+      a href="cover.html" Cover
+    - for obj in self
+      li
+        a href="#{obj[1]}" #{obj[0]} -
+

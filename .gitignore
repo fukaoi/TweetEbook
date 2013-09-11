@@ -1,0 +1,10 @@
+.idea
+.output_default
+output_test
+output
+*.iml
+Blank_Book
+epubcheck*
+kindlegen
+tools
+Gemfile.lock

@@ -1,0 +1,9 @@
+﻿<display_options>
+	<platform name="*">																					<!-- all devices -->
+		<option name="fixed-layout">true</option> 								<!-- fixes the layout -->
+		<option name="specified-fonts">false</option>							<!-- set to "true" when embedding fonts -->
+		<option name="open-to-spread">true</option>								<!-- single page or full spread on open -->
+<!--<option name="orientation-lock">landscape-only</option>				"landscape-only" or "portrait-only" or leave this line commented -->
+		<option name="interactive">false</option>									<!-- set to "true" when using javascript or canvas -->
+	</platform>
+</display_options>

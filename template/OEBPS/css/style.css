@@ -1,0 +1,133 @@
+html, body, div, img, p, a, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+/* this is not an exhaustive browser reset */
+body {
+  font-family:'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro',Osaka,Meiryo,sans-serif, arial;
+  width: 760px;
+  height: 1000px; /* sets up the page */
+  position: relative;
+  font-size: 40px;
+  line-height: 1em;
+  color: #333;
+}
+
+img.back {
+  z-index: -1; /* send to back */
+  width: 760px;
+  height: 1000px; /* ensure full bleed images match page */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* stick it in the top corner */
+
+a {
+  text-decoration: none;
+  border-bottom: 1px solid #ccc;
+  color: #48d;
+}
+
+h3 {
+  margin: 0px;
+  text-shadow: 5px 5px 6px #cdcdcd;
+  text-align: center;
+  position: relative;
+  top: 50px;
+}
+
+#account {
+  width: 300px;
+  height: auto;
+  position: relative;
+  top: 250px;
+  left: 230px;
+}
+#account #image {
+  width: 300px;
+  height: 300px;
+  border-radius: 20px;
+  border: solid 1px;
+  box-shadow:0 1px 4px rgba(60, 60, 60, 0.83), 0 0 40px rgba(0, 0, 0, 0.44) inset;
+}
+#account #name {
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bold;
+  color: #333;
+  text-shadow: 0 0 5px #ffffff, 0 0 40px #ffffff, 0 0 60px #ffffff, 0 0 100px #ffffff, 0 0 120px #ffffff;
+}
+
+.favorite {
+  margin-top: 20px;
+}
+
+.favorite .image{
+  margin: 10px;
+  float: left;
+}
+
+.favorite .account {
+  margin-left: 100px;
+  margin-bottom: 20px;
+}
+
+.favorite .account .name{
+  margin: 0px;
+  font-size: 30px;
+}
+
+.favorite .account .desc {
+  font-size: 15px;
+  color: #767c84;
+}
+
+.favorite img{
+  border: solid 1px #999;
+  border-radius: 5px;
+  height: 50px;
+  width: 50px;
+}
+
+.favorite article {
+  padding: 10px;
+  border: solid 1px #4e4e4e;
+  background-color: #ffffff;
+  font-size: 20px;
+  border-radius: 8px;
+}
+
+.favorite .info {
+  color: #767c84;
+  font-weight: bold;
+  margin: 10px;
+}
+.favorite .info .date {
+  float: right;
+}
+
+.favorite .count {
+  float: left;
+}
+
+/**** The Book ****/
+
+section.text, section.license {
+  position: absolute;
+  top: 1.5em;
+  left: 2em;
+  width: 15em;
+}
+
+section.license {
+  /*width: 11.5em;*/
+}
+
+section.license p {
+  font-size: 0.40em;
+  line-height: 1.8em;
+  margin-bottom: 1em;
+}
