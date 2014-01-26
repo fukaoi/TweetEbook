@@ -1,7 +1,7 @@
 require 'epub_template'
 require 'entities'
 require 'ostruct'
-require 'shared-mime-info'
+require 'mime-types'
 require 'date'
 require 'uuidtools'
 require 'contracts'
@@ -36,21 +36,25 @@ module EpubTemplate
     end
 
     private
-    Contract NIL => Array
+    Contract NIL => ArrayOf[{image: String, file_ext: String}]
     def saves_image_name
       images_and_file_exts = []
-      Dir.glob("#{@output_dir}images/twitter/*").each { |im|
-        image = replace_un_name(im)
-        file_ext = MIME.check_magics im
-        raise EpubError, 'Failed check mime type. maybe not found mime-data' unless file_ext
-        images_and_file_exts << OpenStruct.new(image: image, file_ext: file_ext)
-      }
+      Dir.glob("#{@output_dir}images/twitter/*").each do |im|
+        images_and_file_exts << {
+          image: replace_un_name(im), file_ext: check_mime(im)
+        }
+      end
       images_and_file_exts
     end
 
     Contract NIL => String
     def create_uuid
       UUIDTools::UUID::timestamp_create.to_s
+    end
+
+    Contract String => String
+    def check_mime(file_path)
+      MIME::Types.type_for(file_path).last.to_s
     end
   end
 end

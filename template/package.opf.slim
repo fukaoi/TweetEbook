@@ -52,7 +52,7 @@ package(xmlns="http://www.idpf.org/2007/opf" prefix="rendition: http://www.idpf.
         - i = 0
 		- for obj in images
 		    - i += 1
-            item id="image#{i}" media-type="#{obj.file_ext}" href="#{obj.image}"
+            item id="image#{i}" media-type="#{obj[:file_ext]}" href="#{obj[:image]}"
 
 	spine page-progression-direction="ltr"
 		itemref idref="cover"

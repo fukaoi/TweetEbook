@@ -28,14 +28,14 @@ module EpubTemplate
     Contract ArrayOf[Entities::Tweet] => {}
     def group_year_month(datetime)
       dates = {}; tmp_date = ''; i = 0
-      raise EpubError, 'No file pages*.html' unless pages_file_name.any?
       files = pages_file_name
-      datetime.each { |d|
+      raise EpubError, 'No file pages*.html' unless files.any?
+      datetime.each do |d|
         /([0-9]{4}-[0-9]{2})/ =~ d.datetime.to_s
         dates.store($1, files[i/2]) if (tmp_date != $1)
         tmp_date = $1
         i += 1
-      }
+      end
       dates
     end
   end

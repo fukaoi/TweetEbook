@@ -56,7 +56,7 @@ class EpubParts
     open(file_name, 'wb') do |f|
       parse_url = URI::parse(url)
       net = url.match('http://') ? http_get(parse_url) : https_get(parse_url)
-      if Net::HTTPSuccess.eql? net
+      if net.instance_of? Net::HTTPOK
         f.puts net.body
       else
         no_image file_name
