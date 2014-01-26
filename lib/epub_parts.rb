@@ -28,15 +28,9 @@ class EpubParts
     File.exist? out_dir
   end
 
-  Contract ArrayOf[String] => Bool
+  Contract ArrayOf[String] => ArrayOf[String]
   def save_images?(urls)
-    begin
-      raise EpubError, 'Not found param' unless urls
-      urls.each { |url| save_image(url) }
-    rescue => e
-      raise e
-    end
-    true
+    urls.each { |url| save_image(url) }
   end
 
   def create_mimefile?
@@ -62,26 +56,26 @@ class EpubParts
     open(file_name, 'wb') do |f|
       parse_url = URI::parse(url)
       net = url.match('http://') ? http_get(parse_url) : https_get(parse_url)
-      if Net::HTTPSuccess === net
+      if Net::HTTPSuccess.eql? net
         f.puts net.body
       else
-        no_image(file_name)
+        no_image file_name
       end
     end
-    move_image_dir(file_name)
+    move_image_dir file_name
   end
 
-  Contract URI::HTTP => Or[Net::HTTPOK, Net::HTTPError, Net::HTTPNotFound]
+  Contract URI::HTTP => Or[Net::HTTPOK, Net::HTTPError, Net::HTTPNotFound, Net::HTTPForbidden]
   def http_get(parse_url)
     Net::HTTP.get_response(parse_url)
   end
 
-  Contract URI::HTTPS => Or[Net::HTTPOK, Net::HTTPError, Net::HTTPNotFound]
+  Contract URI::HTTPS => Or[Net::HTTPOK, Net::HTTPError, Net::HTTPNotFound, Net::HTTPForbidden]
   def https_get(parse_url)
     net = Net::HTTP.new(parse_url.host, parse_url.port)
     net.use_ssl = true
     req = Net::HTTP::Get.new(parse_url.request_uri)
-    net.request(req)
+    net.request req
   end
 
   Contract String => Bool

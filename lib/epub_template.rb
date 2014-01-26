@@ -29,9 +29,9 @@ module EpubTemplate
     end
 
     def create(contents, file_name)
-      File.open(@output_dir + "#{file_name}", 'w') {
+      File.open(@output_dir + "#{file_name}", 'w') do
         |f| f.write(contents)
-      }
+      end
     end
 
     def exist?(html_file_name)
@@ -40,9 +40,9 @@ module EpubTemplate
 
     def pages_file_name
       htmls = []
-      sort_file(Dir.glob("#{@output_dir}pages*.html")).each { |page|
+      sort_file(Dir.glob("#{@output_dir}pages*.html")).each do |page|
         htmls << replace_un_name(page)
-      }
+      end
       htmls
     end
 
