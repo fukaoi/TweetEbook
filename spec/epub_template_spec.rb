@@ -102,6 +102,8 @@ describe EpubTemplate::Nav do
     describe 'EpubTemplate::Nav#create' do
       context '@html set, create nav.html' do
         it {
+          expect(pages.render(tweet)).to be_true
+          expect(pages.create).to be_true
           expect(nav.render(tweet)).to match(xml_regex_format)
           expect(nav.create).to be_true
         }
