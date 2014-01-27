@@ -42,7 +42,6 @@ describe EpubParts do
     }
   end
 
-  before(:all) { helper_create_oebps_dir }
   let(:tweet) { build(Entities::Tweet) }
   context 'Get profile image file' do
     subject { parts.save_images?(tweet.images) }
@@ -53,19 +52,16 @@ describe EpubParts do
     it { expect { parts.save_images?('') }.to raise_error }
   end
 
-  before(:all) { helper_create_oebps_dir }
   context 'create no image files' do
     subject { parts.save_images?(%w(http://fukaoi.org/static/dummy.jpg)) }
     it { should be_true }
   end
 
-  before(:all) { helper_create_oebps_dir }
   context 'Create mimetype a file' do
     subject { parts.create_mimefile? }
     it { should be_true }
   end
 
-  before(:all) { helper_create_all }
   let(:tweet) { build(Entities::Tweet) }
   context 'Create an epub file' do
     subject {

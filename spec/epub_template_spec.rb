@@ -7,7 +7,6 @@ require 'epub_template/manifest'
 require 'epub_error'
 
 describe EpubTemplate::Pages do
-  before(:all) { helper_create_oebps_dir }
   let(:pages) { EpubTemplate::Pages.new }
   let(:tweet) { build_list(Entities::Tweet, 10) }
   context 'Rendering pages template' do
@@ -47,7 +46,6 @@ describe EpubTemplate::Pages do
 end
 
 describe EpubTemplate::Cover do
-  before(:all) { helper_create_oebps_dir }
   let(:cover) { EpubTemplate::Cover.new }
   let(:usac) { build(Entities::UserAccount) }
   context 'Rendering cover template' do
@@ -79,7 +77,6 @@ describe EpubTemplate::Cover do
 end
 
 describe EpubTemplate::Nav do
-  before(:all) { helper_create_oebps_dir }
   let(:pages) { EpubTemplate::Pages.new }
   let(:nav) { EpubTemplate::Nav.new }
   let(:tweet) { build_list(Entities::Tweet, 10) }
@@ -118,7 +115,6 @@ end
 
 
 describe EpubTemplate::Manifest do
-  before(:all) { helper_create_oebps_dir }
   let(:mani) { EpubTemplate::Manifest.new }
   let(:usac) { build(Entities::UserAccount) }
   context 'Rendering manifest template' do

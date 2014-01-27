@@ -11,13 +11,17 @@ RSpec.configure do |conf|
   conf.include FactoryGirl::Syntax::Methods
 
   conf.before(:all) do
-    FileUtils.mkdir getOutputDir if !File.exist? getOutputDir
-    disp'created test directory'
+    unless File.exist? getOutputDir
+      helper_create_all
+      disp'created test directory'
+    end
   end
 
   conf.after(:all) do
-    FileUtils.remove_dir getOutputDir if File.exist? getOutputDir
-    disp 'deleted test directory'
+    if File.exist? getOutputDir
+      FileUtils.remove_dir getOutputDir
+      disp 'deleted test directory'
+    end
   end
 end
 
@@ -28,12 +32,6 @@ end
 
 def disp(mess)
   puts "[helper]#{mess}"
-end
-
-def helper_create_oebps_dir
-  require 'epub_parts'
-  parts = EpubParts.new
-  parts.create_oebps_dir?
 end
 
 def helper_create_all
