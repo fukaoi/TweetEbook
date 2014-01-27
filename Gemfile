@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rake'
-gem 'twitter'
+gem 'twitter', '5.6.0'
 gem 'slim'
 gem 'configuration'
 gem 'uuidtools'
